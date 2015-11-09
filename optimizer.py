@@ -1,5 +1,8 @@
 from random import shuffle, randrange, random
 from math import log
+import matplotlib.pyplot as plt
+
+
 class Optimizer():
 
     def __init__(self, bidrag, elementer, max_iterations=1000):
@@ -7,7 +10,7 @@ class Optimizer():
         self.bidrag = bidrag
         self.elementer = elementer
         self.li = self.generateRandomPermutation()
-
+        self.straffLog = []
     def straff(self, x):
         return sum(map(lambda a,b: abs(a-b), x[1:], x[:-1]))
 
@@ -31,7 +34,14 @@ class Optimizer():
             straffy = self.straff(self.li)
             if (straffx + self.temperature*log(1/random() > straffy):
                 self.li[x], self.li[y] = self.li[y], self.li[x]
+                self.straffLog.append(straffx)
+            else :
+                self.straffLog.append(straffy)
             self.temperature *= 0.995
+        
+    def show_results(self):
+        plt.plot(range(0,self.max_iterations), self.straffLog, 'b-')
+        plt.show()
 
     def bidrag(self):
         pass
