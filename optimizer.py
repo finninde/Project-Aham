@@ -17,6 +17,7 @@ class Optimizer():
 
 
     def bidrag(self):
+        pass
 
     def generateRandomPermutation(self):
         return self.elementer.shuffle()
