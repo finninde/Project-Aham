@@ -13,15 +13,21 @@ def dijkstra():
 def salesman():
     pass
 
+##Representation of a node (road intersection on a map)
 class Node():
-    def __init__(self):
-        pass
+    def __init__(self, latitude, longitude):
+        self.latitude = latitude        # "x-coordinate"
+        self.longitude = longitude      # "y-coordinate"
 
     def __eq__(self, other):
-        pass
+        if self.latitude == other.latitude and self.longitude == other.longitude:
+            return True
+        else:
+            return False
 
     def __repr__(self):
-        pass
+        theString = "Latitude:", self.latitude, "Longitude:",self.longitude
+        return theString
 
 
 class Edge():
