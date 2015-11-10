@@ -37,7 +37,7 @@ class Optimizer():
             if (straffx + self.temperature*log(1/random()) > straffy):
                 self.li[x], self.li[y] = self.li[y], self.li[x]
                 self.straffLog.append(straffx)
-            else :
+            else:
                 self.straffLog.append(straffy)
             self.temperature *= 0.995
         
