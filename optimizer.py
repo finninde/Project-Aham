@@ -2,6 +2,7 @@ from random import shuffle, randrange, random
 from math import log
 import matplotlib.pyplot as plt
 import unittest
+import logging, sys
 
 class Optimizer():
 
@@ -12,6 +13,7 @@ class Optimizer():
         shuffle(self.elementer)
         self.straffLog = []
         self.temperature = 1000
+
 
     def straff(self, x):
         return sum(map(lambda a,b: abs(a-b), x[1:], x[:-1]))
