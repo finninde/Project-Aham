@@ -49,3 +49,4 @@ class UndirectedGraph():
         pass
 
     def delete_node(self, node):
+        pass
