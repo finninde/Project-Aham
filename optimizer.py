@@ -1,6 +1,8 @@
 from random import shuffle, randrange, random
 from math import log
 import matplotlib.pyplot as plt
+import logging, sys
+
 
 
 class Optimizer():
@@ -9,8 +11,10 @@ class Optimizer():
         self.max_iterations = max_iterations
         self.bidrag = bidrag
         self.elementer = elementer
+
         self.li = shuffle(elementer)
         self.straffLog = []
+
 
     def straff(self, x):
         return sum(map(lambda a,b: abs(a-b), x[1:], x[:-1]))
