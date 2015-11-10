@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 
 class Optimizer():
 
-    def __init__(self, bidrag, elementer, max_iterations=1000):
+    def __init__(self, elementer, max_iterations=1000):
         self.max_iterations = max_iterations
-        self.bidrag = bidrag
         self.elementer = elementer
         self.li = shuffle(elementer)
         self.straffLog = []
@@ -44,9 +43,6 @@ class Optimizer():
     def show_results(self):
         plt.plot(range(0,self.max_iterations), self.straffLog, 'b-')
         plt.show()
-
-    def bidrag(self):
-        pass
 
     def getRandomIndex(self):
         return randrange(0,len(self.li),1)
