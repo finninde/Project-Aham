@@ -11,7 +11,7 @@ class OptimizerTest(unittest.TestCase):
         opt = Optimizer(elementer=[7,5,8,1,4,3,2,9,11,50,17,22,34,11,5,99,1,42,24])
         self.assertIsNotNone(opt.solveSA())
     
-    def test_listlengths(self):
+    def test_listlengths(self):     
         opt = Optimizer(elementer=[7,5,8,1,4,3,2,9,11,50,17,22,34,11,5,99,1,42,24])
         self.assertEqual(len(opt.solveSA()), len(opt.elementer))
     
