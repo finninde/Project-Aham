@@ -8,30 +8,34 @@
 
 from math import pi,sin, cos, acos
 
-
+## Implements dijkstras algorithm for finding the shortest path in a graph from a given start point to a given end point
 def dijkstra():
     pass
 
+## Implements a solution to the travelling salesman problem for a given start node
 def salesman():
     pass
 
-##Representation of a node (road intersection on a map)
+## Representation of a node (road intersection on a map)
 class Node():
     def __init__(self, latitude, longitude):
         self.latitude = latitude        # "x-coordinate"
         self.longitude = longitude      # "y-coordinate"
 
+    ## Defines how the compiler should check for equality of two instances
     def __eq__(self, other):
         if self.latitude == other.latitude and self.longitude == other.longitude:
             return True
         else:
             return False
 
+    ## Defines how the compiler should print out an object instance
     def __repr__(self):
-        theString = "Latitude:", self.latitude, "Longitude:",self.longitude
+        theString = "Latitude: " + self.latitude +  "\tLongitude: " + self.longitude
         return theString
 
 
+## Representation of an edge (road)
 class Edge():
     def __init__(self, startnode, endnode, wkt):
         self.startnode= startnode #Startpoint already contains coordinates
@@ -39,6 +43,7 @@ class Edge():
         self.wkt = wkt
         self.weight = self.calculateTotalEdgeWeight()
 
+    ## Calculates total road length
     def calculateTotalEdgeWeight(self):
         # For every pair of points in self.wkt, call the following function:
         # TODO: Sett inn variabler som argumenter med koordinater ifra punktparene, loop så lenge det er par igjen, lagre total
@@ -48,6 +53,8 @@ class Edge():
 
         return weight
 
+
+    #Uses trig to find the total road length with respect to the earth's spherical shape.
     def distance_on_unit_sphere(self, lat1= -1, long1= -1, lat2= -1, long2= -1):
         # Source: provided source code from project text
         earth_radius = 6372.8
@@ -66,25 +73,30 @@ class Edge():
         return arc_length*earth_radius
 
 
+    ## Standard method to define how to check for equality
     def __eq__(self, other):
         if self.weight == other.weight and self.startnode == other.startnode and self.endnode == other.endnote:
             return True
         else:
             return False
 
+    ## Standard method to define how an instance should be printed
     def __repr__(self):
         theString = "Startnode: " + self.startnode.__repr__() + "   Endnode: " + self.endnode.__repr__() + "  Weight: " + self.weight
         return theString
 
-
+    ## Gets the road length
     def get_distance(self):
         return self.weight
 
     ##What's this for? What is the property it is referring to?
+    ## TODO: Find out if this is necessary
     def get_property(self):
         pass
 
 
+## Creates an undirected graph (read:map)
+## TODO: Implement the class according to spec
 class UndirectedGraph():
     def __init__(self):
         pass
