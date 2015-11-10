@@ -32,10 +32,10 @@ class Optimizer():
                 x, y = self.getRandomIndex(), self.getRandomIndex()
             self.li[x], self.li[y] = self.li[y], self.li[x]
             straffy = self.straff(self.li)
-            if (straffx + self.temperature*log(1/random() > straffy):
+            if (straffx + self.temperature*log(1/random() > straffy)):
                 self.li[x], self.li[y] = self.li[y], self.li[x]
                 self.straffLog.append(straffx)
-            else :
+            else:
                 self.straffLog.append(straffy)
             self.temperature *= 0.995
         
