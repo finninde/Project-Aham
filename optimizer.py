@@ -9,8 +9,9 @@ class Optimizer():
         self.max_iterations = max_iterations
         self.bidrag = bidrag
         self.elementer = elementer
-        self.li = self.generateRandomPermutation()
+        self.li = shuffle(elementer)
         self.straffLog = []
+
     def straff(self, x):
         return sum(map(lambda a,b: abs(a-b), x[1:], x[:-1]))
 
@@ -25,14 +26,15 @@ class Optimizer():
             straffy = self.straff(self.li)
             if (straffx < straffy):
                 self.li[x], self.li[y] = self.li[y], self.li[x]
+
     def solveSA (self):
         for i in range(0, self.max_iterations):
             straffx = self.straff(self.li)
-            while x is y and len(self.li):
+            while x is y:
                 x, y = self.getRandomIndex(), self.getRandomIndex()
             self.li[x], self.li[y] = self.li[y], self.li[x]
             straffy = self.straff(self.li)
-            if (straffx + self.temperature*log(1/random() > straffy):
+            if (straffx + self.temperature*log(1/random()) > straffy):
                 self.li[x], self.li[y] = self.li[y], self.li[x]
                 self.straffLog.append(straffx)
             else :
@@ -45,9 +47,6 @@ class Optimizer():
 
     def bidrag(self):
         pass
-
-    def generateRandomPermutation(self):
-        return self.elementer.shuffle()
 
     def getRandomIndex(self):
         return randrange(0,len(self.li),1)
