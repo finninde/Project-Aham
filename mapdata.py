@@ -7,6 +7,8 @@
 ## - Class UndirectedGraph
 
 from math import pi,sin, cos, acos
+from heapq import heappush, heappop
+import itertools
 
 def flatten_list(input_list):
     while len(input_list) > 0:
@@ -14,8 +16,54 @@ def flatten_list(input_list):
         input_list = input_list[1]
     return input_list
 
-## Implements dijkstras algorithm for finding the shortest path in a graph from a given start point to a given end point
-def dijkstra(starttuple, endtuple):
+## Implements dijkstras algorithm for finding the shortest path in a graph from a given start point
+def dijkstra(undirectedgraph, sourcenode):
+    S = None
+
+    ##Implementation of min-priority queue from https://docs.python.org/2/library/heapq.html
+    Q = []                         # list of entries arranged in a heap
+    entry_finder = {}               # mapping of tasks to entries
+    REMOVED = '<removed-task>'      # placeholder for a removed task
+    counter = itertools.count()     # unique sequence count
+
+    def add_task(task, priority=0):
+        'Add a new task or update the priority of an existing task'
+        if task in entry_finder:
+            remove_task(task)
+        count = next(counter)
+        entry = [priority, count, task]
+        entry_finder[task] = entry
+        heappush(Q, entry)
+
+    def remove_task(task):
+        'Mark an existing task as REMOVED.  Raise KeyError if not found.'
+        entry = entry_finder.pop(task)
+        entry[-1] = REMOVED
+
+    def pop_task():
+        'Remove and return the lowest priority task. Raise KeyError if empty.'
+        while Q:
+            priority, count, task = heappop(Q)
+            if task is not REMOVED:
+                del entry_finder[task]
+                return task
+        raise KeyError('pop from an empty priority queue')
+    ## CODE FROM https://docs.python.org/2/library/heapq.html END
+
+    for node in undirectedgraph.nodes:
+        add_task(node, float("inf"))
+
+    add_task(sourcenode, 0)         #Change priority of source node to 0. We wish to start with the source node.
+
+    while Q is not None:            #While there are nodes in the min-priority queue
+        ##PSEUDOCODE START
+        u = pop_task() #extract-min(Q)          #Get the node with the lowest priority/distance
+        S = S union u
+
+        for vertex in G.adj[]:
+            relax(u,v,w)
+
+        ##PSEUDOCODE END
 
 
 
@@ -51,6 +99,7 @@ class Edge():
         self.weight = self.calculateTotalEdgeWeight()
 
     ## Calculates total road length
+    ## TODO: NOT FINISHED!
     def calculateTotalEdgeWeight(self):
         # For every pair of points in self.wkt, call the following function:
         # TODO: Sett inn variabler som argumenter med koordinater ifra punktparene, loop så lenge det er par igjen, lagre total
