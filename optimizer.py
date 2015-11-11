@@ -2,7 +2,6 @@ from random import shuffle, randrange, random
 from math import log
 import matplotlib.pyplot as plt
 
-
 class Optimizer():
 
     def __init__(self, elementer, max_iterations=100000):
