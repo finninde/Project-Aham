@@ -12,5 +12,5 @@ if __name__ == "__main__":
     graph.insert_node(Node(1,2))
     graph.insert_node(Node(1,2))
 
-    salesman(graph)
+    salesman(graph) 
 
