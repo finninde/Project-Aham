@@ -1,8 +1,7 @@
 from random import shuffle, randrange, random
 from math import log
 import matplotlib.pyplot as plt
-import unittest
-import logging, sys
+
 
 class Optimizer():
 
