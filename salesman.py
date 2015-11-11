@@ -1,5 +1,8 @@
 from dijkstra import dijkstra
 
+
+##TODO: Remember that dicts (edges, nodes, etc) are extracted randomly. Account for this in matrix and lookups. So not by index, but object reference.
+
 ## Implements a solution to the travelling salesman problem
 def salesman(undirectedgraph):
     n = len(undirectedgraph.nodes)

@@ -18,5 +18,5 @@ if __name__ == "__main__":
     for edge in patches:
         graph.insert_edge(Edge((edge[0], edge[1]), (edge[2], edge[3]), edge[4]))
 
-    salesman(graph)
+    salesman(graph) 
 
