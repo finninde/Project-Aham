@@ -8,9 +8,9 @@ from salesman import salesman
 
 
 if __name__ == "__main__":
-    node1 = Node(2,1)
-    node2 = Node(2,1)
+    graph = UndirectedGraph()
+    graph.insert_node(Node(1,2))
+    graph.insert_node(Node(1,2))
 
-    print(node1.__repr__())
-    print(node2.__repr__())
-    print(node1.__eq__(node2))
+    salesman(graph)
+

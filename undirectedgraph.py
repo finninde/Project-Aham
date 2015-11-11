@@ -1,5 +1,3 @@
-from math import pi,sin, cos, acos
-
 ## Creates an undirected graph (read:map)
 class UndirectedGraph():
     def __init__(self):
