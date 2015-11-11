@@ -8,9 +8,16 @@
 
 from math import pi,sin, cos, acos
 
+def flatten_list(input_list):
+    while len(input_list) > 0:
+        yield input_list[0]
+        input_list = input_list[1]
+    return input_list
+
 ## Implements dijkstras algorithm for finding the shortest path in a graph from a given start point to a given end point
-def dijkstra():
-    pass
+def dijkstra(starttuple, endtuple):
+
+
 
 ## Implements a solution to the travelling salesman problem for a given start node
 def salesman():
