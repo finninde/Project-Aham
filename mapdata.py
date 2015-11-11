@@ -110,6 +110,7 @@ class UndirectedGraph():
             del self.nodes[(node.latitude, node.longitude)]
 
     def insert_edge(self, edge):
+        ## Linje fra AtB
         ##Hvis vi allerede har tegnet en kant ifra startnoden ifra før / finnes nøkkelen til startnode?
         if (edge.startnode.latitude, edge.startnode.longitude) in self.edges:
             ##Sjekk om det har blitt tegnet til samme sluttnode... / om nøkkelen til sluttnode ikke finnes i startnodedict...
@@ -120,9 +121,18 @@ class UndirectedGraph():
         else:
             self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnote.longitude): edge}
 
+        ##Reverser start og slutt slik at vi tegner ifra B til A
+        temp = edge.startnode
+        edge.startnode = edge.endnode
+        edge.endnode = temp
 
-
-
-
-    def delete_edge(self, edge):
-        pass
+        ##Linje fra B til A
+        ##Hvis vi allerede har tegnet en kant ifra startnoden ifra før / finnes nøkkelen til startnode?
+        if (edge.startnode.latitude, edge.startnode.longitude) in self.edges:
+            ##Sjekk om det har blitt tegnet til samme sluttnode... / om nøkkelen til sluttnode ikke finnes i startnodedict...
+            if (edge.endnode.latitude,edge.endnode.longitude) not in self.edges[(edge.startnode.latitude, edge.startnode.longitude)]:
+                ##Legg den til!
+                self.edges[(edge.startnode.latitude, edge.startnode.longitude)][(edge.endnode.latitude,edge.endnode.longitude)] = edge
+        ##Om det ikke finnes et slikt startnodedict...
+        else:
+            self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnote.longitude): edge}
