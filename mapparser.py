@@ -8,7 +8,9 @@ class Mapparser():
         self.root = self.tree.getroot()
         self.waypoints = []
         self.patches = []
-        
+        self.calcWaypoints()
+        self.calcPatches()
+
     def calcWaypoints(self):
         for waypoint in self.root.findall('WAYPOINTS/POINT'):
             longtitude = waypoint.find('LONG')
@@ -22,12 +24,12 @@ class Mapparser():
             endpoint = patch.find('ENDPOINT')
             wkt = patch.find('Wkt')
             wkt = re.sub('\)','',
-                        (re.sub('LINESTRING \(','',wkt))).split(',')
+                        (re.sub('LINESTRING \(','',wkt.text))).split(',')
             wayz = []
             for point in wkt:
-                wayz.append(float((point.split(' ')[1]),
+                wayz.append((float(point.split(' ')[1]),
                             float(point.split(' ')[0])))
-            self.patches.append(float((startpoint.find('LAT').text), 
+            self.patches.append((float(startpoint.find('LAT').text), 
                                 float(startpoint.find('LONG').text), 
                                 float(endpoint.find('LAT').text), 
                                 float(endpoint.find('LONG').text), 
@@ -39,4 +41,8 @@ class Mapparser():
     def getPatches(self):
         return self.patches
 
+if __name__ == "__main__":
+    mpp = Mapparser("roads-approx.xml")
+    print (mpp.getWaypoints()[0])
+    print (mpp.getPatches()[0])
 
