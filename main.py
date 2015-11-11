@@ -1,9 +1,16 @@
 from optimizer import Optimizer
+from node import Node
+from edge import Edge
+from undirectedgraph import UndirectedGraph
+from dijkstra import dijkstra
+from salesman import salesman
 
 
 
 if __name__ == "__main__":
-   opt = Optimizer(elementer=[7,5,8,1,4,3,2,9,11,50,17,22,34,11,5,99,1,42,24])
-   # print ([7,5,8,1,4,3,2,9,11,50,17,22,34,11,5,99,1,42,24])
-   print(opt.solveSA())
-   print(opt.solve()) 
+    node1 = Node(2,1)
+    node2 = Node(2,1)
+
+    print(node1.__repr__())
+    print(node2.__repr__())
+    print(node1.__eq__(node2))

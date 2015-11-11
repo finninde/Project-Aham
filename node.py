@@ -6,12 +6,14 @@ class Node():
 
     ## Defines how the compiler should check for equality of two instances
     def __eq__(self, other):
+        #If coordinates are an exact match (currently no leeway), we assume the nodes to be identical
         if self.latitude == other.latitude and self.longitude == other.longitude:
             return True
+        #Elsewise, we assume the nodes (road intersections) to be different
         else:
             return False
 
-    ## Defines how the compiler should print out an object instance
+    ## Defines how the compiler should display the instance contents as a string
     def __repr__(self):
-        theString = "Latitude: " + self.latitude +  "\tLongitude: " + self.longitude
+        theString = "NODEDATA\n" + "Latitude:\t" + str(self.latitude) +  "\t\tLongitude:\t" + str(self.longitude) + "\n\n"
         return theString
