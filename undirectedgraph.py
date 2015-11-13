@@ -17,12 +17,12 @@ class UndirectedGraph():
         ##Hvis vi allerede har tegnet en kant ifra startnoden ifra før / finnes nøkkelen til startnode?
         if (edge.startnode.latitude, edge.startnode.longitude) in self.edges:
             ##Sjekk om det har blitt tegnet til samme sluttnode... / om nøkkelen til sluttnode ikke finnes i startnodedict...
-            if (edge.endnode.latitude,edge.endnode.longitude) not in self.edges[(edge.startnode.latitude, edge.startnode.longitude)]:
+            if (edge.endnode.latitude, edge.endnode.longitude) not in self.edges[(edge.startnode.latitude, edge.startnode.longitude)]:
                 ##Legg den til!
                 self.edges[(edge.startnode.latitude, edge.startnode.longitude)][(edge.endnode.latitude,edge.endnode.longitude)] = edge
         ##Om det ikke finnes et slikt startnodedict...
         else:
-            self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnote.longitude): edge}
+            self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnode.longitude): edge}
 
         ##Reverser start og slutt slik at vi tegner ifra B til A
         temp = edge.startnode
@@ -38,4 +38,4 @@ class UndirectedGraph():
                 self.edges[(edge.startnode.latitude, edge.startnode.longitude)][(edge.endnode.latitude,edge.endnode.longitude)] = edge
         ##Om det ikke finnes et slikt startnodedict...
         else:
-            self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnote.longitude): edge}
+            self.edges[(edge.startnode.latitude, edge.startnode.longitude)] = {(edge.endnode.latitude, edge.endnode.longitude): edge}

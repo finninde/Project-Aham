@@ -44,7 +44,7 @@ def dijkstra(undirectedgraph, sourcenode):
     nodedata = {}
     for node in undirectedgraph.nodes:
         nodedata[node] = [float("inf"), None] # Distance from source + parent attributes
-        add_task(node, float("inf"))
+        add_task(node, float("inf"))          # We add all tasks with such a priority that it will be called last
 
     add_task(sourcenode, 0)         #Change priority of source node to 0. We wish to start with the source node.
 
@@ -58,13 +58,15 @@ def dijkstra(undirectedgraph, sourcenode):
                 # Relax each edge! Remember to update each priority in the minqueue by calling add_task(task, priority)
                 # Do we need to remember parent? Seems like we only need to remember source (first element in S for this task?
 
-                w = undirectedgraph[(u.latitude, u.longitude)][(v.latitude, v.longitude)].weight
+                w = undirectedgraph[(u.latitude, u.longitude)][(v.latitude, v.longitude)].weight    # Get the weight of the line/road
                 #u.d is found above
-                v.d = entry_finder[v][0]    #Should give us priority, and thus current weight
+                v.d = entry_finder[v][0]    #Should give us the current distance from source. Inf = not connected
 
-                if v.d > u.d + w:
-                    add_task(v, (u.d+w))        #Update the priority queue
-                    nodedata[v][0] = u.d + w    #Update the distance from source as well
-                    nodedata[v][1] = u          #Update the parent!
+                if v.d > u.d + w:           #If the newfound distance from sourcenode is less than what is saved in the priorityqueue
+                    add_task(v, (u.d+w))        #Update v in the priority queue with the new distance from source
+
+                    # Remember that nodedata is a dict where each key leads to a tuple value: weight (distance from source) and parent
+                    nodedata[v][0] = u.d + w    #Update the distance from source as well in nodedata
+                    nodedata[v][1] = u          #Update the parent in the shortest path for the node in nodedata.
     
     return nodedata

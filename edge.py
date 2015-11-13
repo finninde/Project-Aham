@@ -4,8 +4,8 @@ from node import Node
 ## Representation of an edge (road)
 class Edge():
     def __init__(self, startnode, endnode, wkt):
-        self.startnode= Node(startnode) #Startpoint already contains coordinates
-        self.endnode = Node(endnode) #Endpoint already contains coordinates
+        self.startnode= startnode #Startpoint already contains coordinates
+        self.endnode = endnode #Endpoint already contains coordinates
         self.wkt = wkt
         self.weight = self.calculateTotalEdgeWeight()
 
