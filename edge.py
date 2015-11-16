@@ -1,6 +1,6 @@
 from math import pi, sin, cos, acos
 from node import Node
-
+from itertools import tee
 ## Representation of an edge (road)
 class Edge():
     def __init__(self, startnode, endnode, wkt):
@@ -14,9 +14,15 @@ class Edge():
     def calculateTotalEdgeWeight(self):
         # For every pair of points in self.wkt, call the following function:
         # TODO: Sett inn variabler som argumenter med koordinater ifra punktparene, loop så lenge det er par igjen, lagre total
-        self.distance_on_unit_sphere()
 
-        weight = -1
+        # Take pairs from list at head  
+        (a, b) = tee(self.wkt)
+        next(b,None)
+        pairs = izip(a,b)
+        
+        # Pass pairs to distance function
+        for pair in pairs:
+            self.weight = self.weight + self.distance_on_unit_sphere(pair[0], pair[1])
 
         return weight
 
