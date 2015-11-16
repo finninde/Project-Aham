@@ -70,6 +70,6 @@ class Edge():
         return self.weight
 
     ##What's this for? What is the property it is referring to?
-    ## TODO: Find out if this is necessary
-    def get_property(self):
-        pass
+    ##ANS: The other data tags in the XML. Not neccessary for project.
+    #def get_property(self):
+    #    pass
