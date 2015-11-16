@@ -1,12 +1,16 @@
 from math import pi, sin, cos, acos
-from node import Node
 from itertools import tee
+
 ## Representation of an edge (road)
 class Edge():
     def __init__(self, startnode, endnode, wkt):
-        self.startnode= startnode #Startpoint already contains coordinates
-        self.endnode = endnode #Endpoint already contains coordinates
+        #Node instances
+        self.startnode= startnode
+        self.endnode = endnode
+
+        #Distance data saved in coordinate tuples
         self.wkt = wkt
+        
         self.weight = float("inf")
         self.calculateTotalEdgeWeight()
 
@@ -53,23 +57,18 @@ class Edge():
         return arc_length*earth_radius
 
 
-    ## Standard method to define how to check for equality
+    # How to check if two edges are equal
     def __eq__(self, other):
         if self.weight == other.weight and self.startnode == other.startnode and self.endnode == other.endnote:
             return True
         else:
             return False
 
-    ## Standard method to define how an instance should be printed
+    ## How to print an edge to console
     def __repr__(self):
         theString = "Startnode: " + self.startnode.__repr__() + "   Endnode: " + self.endnode.__repr__() + "  Weight: " + self.weight
         return theString
 
-    ## Gets the road length
+    ## Get road length
     def get_distance(self):
         return self.weight
-
-    ##What's this for? What is the property it is referring to?
-    ##ANS: The other data tags in the XML. Not neccessary for project.
-    #def get_property(self):
-    #    pass
