@@ -8,7 +8,7 @@ logging.basicConfig(stream=sys.stderr,level=logging.DEBUG)
 ##TODO: Remember that dicts (edges, nodes, etc) are extracted randomly. Account for this in matrix and lookups. So not by index, but object reference.
 
 ## Implements a solution to the travelling salesman problem
-def salesman(undirectedgraph):
+def salesman(undirectedgraph, checkpoints):
     n = len(undirectedgraph.nodes)
 
     # TODO: How to save shortest paths? :/
