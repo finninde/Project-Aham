@@ -10,7 +10,7 @@ class Edge():
 
         #Distance data saved in coordinate tuples
         self.wkt = wkt
-        
+
         self.weight = float("inf")
         self.calculateTotalEdgeWeight()
 
