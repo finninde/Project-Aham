@@ -13,13 +13,13 @@ from os.path import isfile
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
 if __name__ == "__main__":
-    checkpoints = ((32.542181, -117.029543,),
-                    (39.375626, -123.329745),
-                    (34.167318, -118.383869),
-                    (37.759834, -122.476814),
-                    (36.567796, -121.912731),
-                    (39.184039, -122.115123),
-                    (39.137695, -121.947894)) 
+    checkpoints = ( ('Tijuana', 32.542181, -117.029543,),
+                    ('Napa', 39.375626, -123.329745),
+                    ('West Hollywood', 34.167318, -118.383869),
+                    ('Alameda', 37.759834, -122.476814),
+                    ('Monterrey', 36.567796, -121.912731),
+                    ('Williams', 39.184039, -122.115123),
+                    ('Marseyville', 39.137695, -121.947894)) 
     logging.debug("Main called")
 
     logging.debug("Creating mapparser to extract data from XML")
