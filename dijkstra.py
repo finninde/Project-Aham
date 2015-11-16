@@ -8,7 +8,7 @@ def flatten_list(input_list):
     return input_list
 
 ## Implements dijkstras algorithm for finding the shortest path in a graph from a given start point
-def dijkstra(undirectedgraph, sourcenode):
+def dijkstra(undirectedgraph, sourcenode, targetnode):
     S = []
 
     ##Implementation of min-priority queue from https://docs.python.org/2/library/heapq.html
@@ -52,6 +52,8 @@ def dijkstra(undirectedgraph, sourcenode):
         ##PSEUDOCODE START
         u = pop_task() #extract-min(Q)              #Get the node with the lowest priority/distance
         S.append([u])                              #Get the intersection of the set of shortest path vertices and u (append u)
+        if (u) == targetnode:
+            break
 
         if(undirectedgraph.edges.get(u)):
             for v in undirectedgraph.edges[u]:    ## Should be Key (endnode) which we use to get Edgedata (see class UndirectedGraph)
