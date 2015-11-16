@@ -7,30 +7,37 @@ class Edge():
         self.startnode= startnode #Startpoint already contains coordinates
         self.endnode = endnode #Endpoint already contains coordinates
         self.wkt = wkt
-        self.weight = self.calculateTotalEdgeWeight()
+        self.weight = float("inf")
+        self.calculateTotalEdgeWeight()
 
     ## Calculates total road length
-    ## TODO: NOT FINISHED!
     def calculateTotalEdgeWeight(self):
-        # For every pair of points in self.wkt, call the following function:
-        # TODO: Sett inn variabler som argumenter med koordinater ifra punktparene, loop så lenge det er par igjen, lagre total
-
         # Take pairs from list at head  
         (a, b) = tee(self.wkt)
         next(b,None)
-        pairs = izip(a,b)
+        pairs = zip(a,b)
         
         # Pass pairs to distance function
         for pair in pairs:
-            self.weight = self.weight + self.distance_on_unit_sphere(pair[0], pair[1])
+            distanceSegment= self.distance_on_unit_sphere(pair[0], pair[1])
 
-        return weight
+            if self.weight == float("inf") and distanceSegment >= 0:
+                self.weight = distanceSegment
+            elif distanceSegment >= 0:
+                self.weight += distanceSegment
 
 
     #Uses trig to find the total road length with respect to the earth's spherical shape.
-    def distance_on_unit_sphere(self, lat1= -1, long1= -1, lat2= -1, long2= -1):
+    def distance_on_unit_sphere(self, node1,node2):
+
         # Source: provided source code from project text
         earth_radius = 6372.8
+
+        lat1 = node1[0]
+        lat2 = node2[0]
+
+        long1 = node1[1]
+        long2 = node2[2]
 
         degrees_to_radians = pi/180
         phi1 = (90.0 - lat1) * degrees_to_radians
