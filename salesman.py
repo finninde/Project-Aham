@@ -29,11 +29,10 @@ def salesman(undirectedgraph, checkpoints):
                 targetnode = Node(check[1], check[2])
                 
                 #TODO: calculate shortest path with dijkstra
-                path = dijkstra(undirectedgraph, sourcenode, targetnode)
-                distfromsource = path.get(targetnode)[0]
+                pathstack, distancefromsource = dijkstra(undirectedgraph, sourcenode, targetnode)
                 
                 #TODO: Add to distance dict
-                distances[checkpoint[0]][check] = distfromsource
+                distances[checkpoint[0]][check] = distancefromsource
 
     #TODO: Thus we optimize
     print ("made it!")
