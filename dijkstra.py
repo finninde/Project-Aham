@@ -1,6 +1,7 @@
 from queue import PriorityQueue
 import itertools
 from copy import deepcopy
+from node import Node
 
 # Finds shortest path between a source and a target
 def dijkstra(undirectedgraph, sourcenode, targetnode):
@@ -32,13 +33,10 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
         nodedata[node] = [float("inf"), None] # Distance from source + parent attributes
         priorityAdd(node, float("inf"))          # All nodes are set with priority infinite
     priorityUpdate(sourcenode, 0.0)
-    nodedata[sourcenode] = [0, None]
+    nodedata[sourcenode] = [0, sourcenode]
 
     while len(Q)>1:
-        print("ITERATION!")
         u = priorityPop()
-
-        print("u:", u)
 
         if u == (targetnode):    #If we have arrived at the end-node, dijkstra
             break
@@ -46,13 +44,10 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
         if(undirectedgraph.edges.get(u)):
             for v in undirectedgraph.edges[u]:
                 if(v in Q.keys() and u != v):
-                    print("v: ", v)
                     w = undirectedgraph.edges[u][v].weight    # Get the weight of the line/road
 
                     u.d = nodedata[u][0]
                     v.d = Q[v]
-
-                    print(v.d)
 
                     if v.d > u.d + w:
                         priorityUpdate(v, (u.d+w))        #Update v in the priority queue
@@ -68,9 +63,18 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
     resultStack = []
 
     resultStack.append(targetnode)
+    closestToTree = resultStack[-1]
 
-    while nodedata[resultStack[-1]][1] is True:  #while we arent at the sourcenode... (only one that shouldnt have parent)
-        resultStack.append(nodedata[nodedata[resultStack[-1]][1]])  #add the parent!
+    print("CLOSEST TO TREE: ", nodedata[closestToTree][1])
+
+    while nodedata[closestToTree][1] is not sourcenode:  #while we arent at the sourcenode... (only one that shouldnt have parent)
+
+        resultStack.append(nodedata[closestToTree][1])  #add the parent!
+        print("Node added to path!")
+
+        closestToTree = resultStack[-1]
+
+
 
     #Return stack with path of nodes sourcenode -> targetnode, float distance to targetnode from source
     return resultStack, shortestDistance

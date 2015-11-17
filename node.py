@@ -14,7 +14,7 @@ class Node():
 
     ## How to print Node instance to console
     def __repr__(self):
-        return '%s, %s' % (self.latitude, self.longitude)
+        return 'THIS IS A NODE INSTANCE: %s, %s' % (self.latitude, self.longitude)
 
     ## Default hashing for Node in order to make it hashable
     def __hash__(self):
