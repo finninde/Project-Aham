@@ -1,15 +1,11 @@
-from pathoptimizer import Optimizer
 from node import Node
 from edge import Edge
 from undirectedgraph import UndirectedGraph
-from dijkstra import dijkstra
 from salesman import salesman
 from mapparser import Mapparser
 import logging
 import sys
-import pickle
-from os.path import isfile
-from show_results import show_results
+#from show_results import show_results
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
@@ -45,8 +41,11 @@ if __name__ == "__main__":
         graph.insert_edge(Edge(Node(edgedata[0], edgedata[1]), Node(edgedata[2], edgedata[3]), edgedata[4]))
 
     logging.debug("Calling salesman from main.")
-    path, distances = salesman(graph, checkpoints)
+    path, travellingsolution = salesman(graph, checkpoints)
+
+    print(travellingsolution)
     
-    show_results(path)    
+    #show_results(path)
+
     logging.debug("Call to main ended successfully")
 

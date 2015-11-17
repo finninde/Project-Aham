@@ -3,6 +3,7 @@ from node import Node
 import logging
 import sys
 from optimizer import Optimizer
+from pathoptimizer import Optimizer
 
 logging.basicConfig(stream=sys.stderr,level=logging.DEBUG)
 
@@ -40,7 +41,9 @@ def salesman(undirectedgraph, checkpoints):
                 distances[checkpoint[0]][check[0]] = distancefromsource
                 path[checkpoint[0]][check[0]] = pathstack
     #TODO: Thus we optimize
+    travellingsolver = Optimizer(distances)
+    travellingsolution = travellingsolver.solveSA()
     print ("made it!")
     print(path)
-    return path, distances
+    return path, travellingsolution
 
