@@ -65,12 +65,12 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
     resultStack.append(targetnode)
     closestToTree = resultStack[-1]
 
-    print("CLOSEST TO TREE: ", nodedata[closestToTree][1])
+    #print("CLOSEST TO TREE: ", nodedata[closestToTree][1])
 
     while nodedata[closestToTree][1] is not sourcenode:  #while we arent at the sourcenode... (only one that shouldnt have parent)
 
         resultStack.append(nodedata[closestToTree][1])  #add the parent!
-        print("Node added to path!")
+        #print("Node added to path!")
 
         closestToTree = resultStack[-1]
 
