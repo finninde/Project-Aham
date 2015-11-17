@@ -49,9 +49,19 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
 
         if(undirectedgraph.edges.get(u)):
             for v in undirectedgraph.edges[u]:
-                w = undirectedgraph[u][v].weight    # Get the weight of the line/road
+                w = undirectedgraph.edges[u][v].weight    # Get the weight of the line/road
+
                 u.d = nodedata[u][0]
-                v.d = entry_finder[v][0]    #Should give us the current distance from source. Inf = not connected
+
+                print("====== DEBUG ====== ")
+                print("FIND THIS:")
+                print(v)
+                print("IN THIS:")
+                print(undirectedgraph.edges.keys())
+
+                v.d = entry_finder.get(v.key) #Should give us the current distance from source. Inf = not connected
+
+                print(v.d)
 
                 if v.d > u.d + w:
                     add_task(v, (u.d+w))        #Update v in the priority queue

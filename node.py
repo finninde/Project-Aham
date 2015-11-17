@@ -15,3 +15,7 @@ class Node():
     def __repr__(self):
         theString = "NODEDATA\n" + "Latitude:\t" + str(self.latitude) +  "\t\tLongitude:\t" + str(self.longitude) + "\n\n"
         return theString
+
+    ## Default hashing for Node in order to make it hashable
+    def __hash__(self):
+        return hash(repr(self))

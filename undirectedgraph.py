@@ -1,4 +1,5 @@
 from node import Node
+from copy import deepcopy
 
 # Creates an undirected graph
 class UndirectedGraph():
@@ -26,8 +27,8 @@ class UndirectedGraph():
             self.edges[edge.startnode] = {edge.endnode: edge}
 
         # Since the graph is undirected, we reverse start and end, and run the same checks again!
-        temp = edge.startnode
-        edge.startnode = edge.endnode
+        temp = deepcopy(edge.startnode)
+        edge.startnode = deepcopy(edge.endnode)
         edge.endnode = temp
 
         if edge.startnode in self.edges:

@@ -72,3 +72,6 @@ class Edge():
     ## Get road length
     def get_distance(self):
         return self.weight
+
+    def __hash__(self):
+        return hash(repr(self))
