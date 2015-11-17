@@ -44,7 +44,7 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
 
     while len(Q)>1:
         u = pop_task()
-        if u == (targetnode.latitude, targetnode.longitude):
+        if u == (targetnode.latitude, targetnode.longitude):    #If we have arrived at the end-node, dijkstra
             break
 
         if(undirectedgraph.edges.get(u)):
@@ -58,4 +58,18 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
 
                     nodedata[v][0] = u.d + w    #Update v's weight
                     nodedata[v][1] = u          #Update v's parent
-    return nodedata
+
+    # Now we should have a Dijkstra tree. Crawl from target to source by utilizing the parent attribute.
+    # When crawling, add each node to a result stack that shall return the shortest path between
+    # target and source. Also include a return with the total distance from target to source
+
+    shortestDistance = nodedata[targetnode][0]
+    resultStack = []
+
+    resultStack.append(targetnode)
+
+    while nodedata[resultStack[-1]][1] is not None:  #while we arent at the sourcenode... (only one that shouldnt have parent)
+        resultStack.append(nodedata[nodedata[resultStack[-1]][1]])  #add the parent!
+
+    #Return stack with path of nodes sourcenode -> targetnode, float distance to targetnode from source
+    return resultStack, shortestDistance
