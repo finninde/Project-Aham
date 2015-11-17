@@ -39,17 +39,17 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
     for node in undirectedgraph.nodes:
         nodedata[node] = [float("inf"), None] # Distance from source + parent attributes
         add_task(node, float("inf"))          # All nodes are set with priority infinite
-    add_task((sourcenode.latitude, sourcenode.longitude), 0.0)
-    nodedata[(sourcenode.latitude, sourcenode.longitude)] = [0, None]
+    add_task(sourcenode, 0.0)
+    nodedata[sourcenode] = [0, None]
 
     while len(Q)>1:
         u = pop_task()
-        if u == (targetnode.latitude, targetnode.longitude):    #If we have arrived at the end-node, dijkstra
+        if u == (targetnode):    #If we have arrived at the end-node, dijkstra
             break
 
         if(undirectedgraph.edges.get(u)):
             for v in undirectedgraph.edges[u]:
-                w = undirectedgraph[(u)][(v)].weight    # Get the weight of the line/road
+                w = undirectedgraph[u][v].weight    # Get the weight of the line/road
                 u.d = nodedata[u][0]
                 v.d = entry_finder[v][0]    #Should give us the current distance from source. Inf = not connected
 
