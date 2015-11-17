@@ -1,7 +1,8 @@
 from dijkstra import dijkstra
-
+from node import Node
 import logging
 import sys
+from optimizer import Optimizer
 
 logging.basicConfig(stream=sys.stderr,level=logging.DEBUG)
 
@@ -9,28 +10,31 @@ logging.basicConfig(stream=sys.stderr,level=logging.DEBUG)
 
 ## Implements a solution to the travelling salesman problem
 def salesman(undirectedgraph, checkpoints):
-    n = len(undirectedgraph.nodes)
+    print("call to salesman")
+    #TODO: Make a distance Dict
+    distances = {}
+    #TODO: iterate through all to all checkpoints
+    for checkpoint in checkpoints:
+        print("enter iteration")
+        distances[checkpoint[0]] = (checkpoint[1], checkpoint[2])
+        for check in checkpoints:
+            if check[0] == checkpoint[0]:
+                #TODO: is NAN
+                print("did nothing")
+            else:
+                print("made a node")
+                #TODO: Make nodes
+                #print (checkpoint[1], checkpoint[2], check[1], check[2])
+                sourcenode = Node(checkpoint[1], checkpoint[2])
+                targetnode = Node(check[1], check[2])
+                
+                #TODO: calculate shortest path with dijkstra
+                path = dijkstra(undirectedgraph, sourcenode, targetnode)
+                distfromsource = path.get(targetnode)[0]
+                
+                #TODO: Add to distance dict
+                distances[chekpoint[0]][check] = distfromsource 
 
-    # TODO: How to save shortest paths? :/
-    shortestPaths = [[float("inf")]*n]*n        # Produce an n*n matrix to store shortest paths between i-node and j-node
-
-    #Lemma 24.17: Predecessor subgraph property: "The predecessor subgraph is a shortest-path tree rooted at s" (Cormen)
-
-    for node in undirectedgraph.nodes:              ## For every node in the graph
-        nodedata = dijkstra(undirectedgraph, node)  ## Call dijkstra with the given node as source node. A dict with all nodes and properties
-        #nodedata now contains the shortest distances from source node to every other node
-        #Is it necessary to call dijkstra more than once (are there several dijkstra shortest-paths?
-
-        for data in nodedata:
-            #TODO: How to traverse the shortest path to extract the values
-            #Lemma 24.17: Predecessor subgraph property: "The predecessor subgraph is a shortest-path tree rooted at s" (Cormen)
-            #So compare the found weight (distance from source) to perhaps other found shortest paths between the same points.
-            #Remember unidirectionality.
-
-
-        print(datanode)
-
-
-        ## TODO: Use methods in optimizer to find solution to travelling salesman. One must ignore infinities.
-
-    print (shortestPaths)
+    #TODO: Thus we optimize
+    print ("made it!")
+    print (distances)

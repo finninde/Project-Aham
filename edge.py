@@ -41,7 +41,7 @@ class Edge():
         lat2 = node2[0]
 
         long1 = node1[1]
-        long2 = node2[2]
+        long2 = node2[1]
 
         degrees_to_radians = pi/180
         phi1 = (90.0 - lat1) * degrees_to_radians
