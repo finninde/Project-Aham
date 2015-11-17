@@ -13,10 +13,14 @@ def salesman(undirectedgraph, checkpoints):
     print("call to salesman")
     #TODO: Make a distance Dict
     distances = {}
+    path = {}
     #TODO: iterate through all to all checkpoints
     for checkpoint in checkpoints:
         print("enter iteration")
-        distances[checkpoint[0]] = (checkpoint[1], checkpoint[2])
+        distances[checkpoint[0]] = {}
+        distances[checkpoint[0]]['lat'] = checkpoint[1]
+        distances[checkpoint[0]]['long'] = checkpoint[2]
+        path[checkpoint[0]] = {}
         for check in checkpoints:
             if check[0] == checkpoint[0]:
                 #TODO: is NAN
@@ -32,8 +36,11 @@ def salesman(undirectedgraph, checkpoints):
                 pathstack, distancefromsource = dijkstra(undirectedgraph, sourcenode, targetnode)
                 
                 #TODO: Add to distance dict
-                distances[checkpoint[0]][check] = distancefromsource
-
+                print (distancefromsource)
+                distances[checkpoint[0]][check[0]] = distancefromsource
+                path[checkpoint[0]][check[0]] = pathstack
     #TODO: Thus we optimize
     print ("made it!")
-    print (distances)
+    print(path)
+    return path, distances
+

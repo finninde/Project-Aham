@@ -1,4 +1,4 @@
-from optimizer import Optimizer
+from pathoptimizer import Optimizer
 from node import Node
 from edge import Edge
 from undirectedgraph import UndirectedGraph
@@ -9,11 +9,12 @@ import logging
 import sys
 import pickle
 from os.path import isfile
+from show_results import show_results
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
 if __name__ == "__main__":
-    checkpoints = ( ('Tijuana', 32.542181, -117.029543,),
+    checkpoints = ( ('Tijuana', 32.542181, -117.029543),
                     ('Napa', 39.375626, -123.329745),
                     ('West Hollywood', 34.167318, -118.383869),
                     ('Alameda', 37.759834, -122.476814),
@@ -44,7 +45,8 @@ if __name__ == "__main__":
         graph.insert_edge(Edge(Node(edgedata[0], edgedata[1]), Node(edgedata[2], edgedata[3]), edgedata[4]))
 
     logging.debug("Calling salesman from main.")
-    salesman(graph, checkpoints)
-
+    path, distances = salesman(graph, checkpoints)
+    
+    show_results(path)    
     logging.debug("Call to main ended successfully")
 
