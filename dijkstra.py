@@ -42,8 +42,14 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
     add_task(sourcenode, 0.0)
     nodedata[sourcenode] = [0, None]
 
+
+
     while len(Q)>1:
         u = pop_task()
+        print(u)
+
+        #TODO: Find out why
+
         if u == (targetnode):    #If we have arrived at the end-node, dijkstra
             break
 
@@ -52,14 +58,7 @@ def dijkstra(undirectedgraph, sourcenode, targetnode):
                 w = undirectedgraph.edges[u][v].weight    # Get the weight of the line/road
 
                 u.d = nodedata[u][0]
-
-                print("====== DEBUG ====== ")
-                print("FIND THIS:")
-                print(v)
-                print("IN THIS:")
-                print(undirectedgraph.edges.keys())
-
-                v.d = entry_finder.get(v.key) #Should give us the current distance from source. Inf = not connected
+                v.d = entry_finder.get(v) #Should give us the current distance from source. Inf = not connected
 
                 print(v.d)
 

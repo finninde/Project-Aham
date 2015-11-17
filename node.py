@@ -4,6 +4,7 @@ class Node():
         self.latitude = latitude
         self.longitude = longitude
 
+
     # How to check if two nodes are equal
     def __eq__(self, other):
         if self.latitude == other.latitude and self.longitude == other.longitude:
@@ -18,4 +19,4 @@ class Node():
 
     ## Default hashing for Node in order to make it hashable
     def __hash__(self):
-        return hash(repr(self))
+        return hash((self.latitude,self.longitude))
