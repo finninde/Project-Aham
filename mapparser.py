@@ -15,7 +15,7 @@ class Mapparser():
         for waypoint in self.root.findall('WAYPOINTS/POINT'):
             longtitude = waypoint.find('LONG')
             latitude = waypoint.find('LAT')
-            pnt = (float(longtitude.text), float(latitude.text))
+            pnt = (float(latitude.text), float(longtitude.text))
             self.waypoints.append(pnt)
     
     def calcPatches(self):
