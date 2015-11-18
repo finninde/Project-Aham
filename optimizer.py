@@ -88,3 +88,8 @@ class Optimizer():
 
     def getRandomIndex(self):
         return randrange(0,len(self.elementer),1)
+
+if __name__ == "__main__":
+    opt = Optimizer([8,1,5,4,9,3,0,0, 40, 77])
+    print(opt.solveSA())
+    opt.show_results()

@@ -5,7 +5,7 @@ from salesman import salesman
 from mapparser import Mapparser
 import logging
 import sys
-#from show_results import show_results
+from show_results import show_results
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     print(travellingsolution)
     
-    #show_results(path)
+    show_results(path, travellingsolution)
 
     logging.debug("Call to main ended successfully")
 
